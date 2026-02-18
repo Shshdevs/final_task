@@ -1,5 +1,11 @@
 from selenium.webdriver.common.by import By
 
+class CartPageLocators():
+    EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    
+class BasePageLocators():
+    CART_LINK = (By.XPATH, '//a[text()="View basket"]')
+
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
@@ -14,3 +20,5 @@ class ProductPageLocators():
     NAME_IN_MESSAGE = (By.CSS_SELECTOR, "#messages :nth-child(1) strong")
     PRICE = (By.CSS_SELECTOR, "p.price_color")
     PRICE_IN_MESSAGE = (By.CSS_SELECTOR, "#messages :nth-child(3) strong")
+
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success")
