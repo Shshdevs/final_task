@@ -5,15 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class ProductPage(BasePage):
     def add_to_basket_with_quiz(self):     
-        self.add_to_basket()  
+        add_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
+        add_button.click() 
         self.browser.implicitly_wait(5)
         self.solve_quiz_and_get_code()
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(ProductPageLocators.NAME_IN_MESSAGE))
         self.should_be_equal_product_name()
         self.should_be_equal_product_price()
-        self.test_guest_cant_see_success_message_after_adding_product_to_basket()
-        self.test_guest_cant_see_success_message()
-        self.test_message_disappeared_after_adding_product_to_basket()
     
     def add_to_basket(self):
         add_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
