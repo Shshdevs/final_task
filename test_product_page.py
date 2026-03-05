@@ -1,12 +1,11 @@
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
-from .pages.base_page import BasePage
+from .pages.basket_page import BasketPage
 import pytest
 import time
 
 @pytest.mark.need_review
 class TestUserAddToBasketFromProductPage():
-    
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/accounts/login/"
@@ -37,7 +36,8 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_basket()
-    page.should_be_empty_basket_message()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.test_guest_cant_see_product_in_basket_opened_from_page()
 
 @pytest.mark.need_review
 @pytest.mark.parametrize('link', [
@@ -54,6 +54,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     ]
 )
 def test_guest_can_add_product_to_basket(browser, link):
+    browser.get(link)
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket_with_quiz()

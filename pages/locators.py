@@ -1,7 +1,4 @@
 from selenium.webdriver.common.by import By
-
-class CartPageLocators():
-    EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
     
 class BasePageLocators():
     CART_LINK = (By.XPATH, '//a[text()="View basket"]')
@@ -31,3 +28,7 @@ class ProductPageLocators():
 
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success")
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    
+class BasketPageLocators():
+    BASKET_FORM = (By.CSS_SELECTOR, ".basket_formset")
+    EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")

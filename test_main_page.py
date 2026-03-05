@@ -1,5 +1,6 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 import pytest
 
 @pytest.mark.login_guest
@@ -19,9 +20,11 @@ class TestLoginFromMainPage():
         page.open()
         page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = MainPage(browser, link)
     page.open()
     page.go_to_basket()
-    page.should_be_empty_basket_message()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.test_guest_cant_see_product_in_basket_opened_from_page()
